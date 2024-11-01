@@ -2052,8 +2052,8 @@ function gui:ColorSelector(Page, Name, NumberInList, DefaultColor)
             if _G.OptimizeMenu == true then time = 0.04 end
             while wait(time) do
                 local r,g,b = hsvToRgb(gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["H"]/255,gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["S"]/255,gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["V"]/255)
-                gui["pages"][Page]["Functions"][NumberInList][Name]["Color"] = Color3.fromRGB(r,g,b)
                 obj.BackgroundColor3 = Color3.fromHSV(gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["H"]/255,gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["S"]/255,gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["V"]/255)
+                gui["pages"][Page]["Functions"][NumberInList][Name]["Color"] = obj.BackgroundColor3
                 ValueSelector.Main.BackgroundColor3 = Color3.fromHSV(gui["pages"][Page]["Functions"][NumberInList][Name]["ColorHSV"]["H"]/255,1,1)
                 
                 if gui.page[1] == Page and gui.page[2] == NumberInList then
@@ -2830,7 +2830,7 @@ function Setvisuals(v)
                         else
                             weapon.Visible = false
                         end
-                        
+
                         if gui:IsChecked("Visuals", "Nametags",2) and not gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
                             Nametag.Position = Vector2.new((vector.X-downPos/4)+(downPos/2)/2,(vector.Y+downPos/2)-16)
                             Nametag.Color = InterColor
