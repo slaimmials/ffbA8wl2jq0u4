@@ -4,7 +4,17 @@ _G.SecureMethod = "NoSecure"
 _G.Mobile = false
 local randomString=function(a)if typeof(a)~="number"then error("function string.random: count of char is not a number!")return""end;local b=""for c=1,a do b=b..string.char(math.random(1,255))end;return b end;print(randomString(12))
 --local CFrame=CFrame;local Vector3 = Vector3;local Vector2=Vector2;local UDim2=UDim2;local Color3=Color3;local Instance=Instance;local spawn=spawn;local workspace=workspace;local Enum=Enum;local wait=wait;local math=math;local ColorSequence=ColorSequence;local ColorSequenceKeypoint=ColorSequenceKeypoint;local NumberSequence=NumberSequence;local NumberSequenceKeypoint=NumberSequenceKeypoint;
-local coreLocked=pcall(function()local a=game:GetService("CoreGui") end)local guiPlacing;if not coreLocked then guiPlacing = game:GetService("Players").LocalPlayer.PlayerGui else guiPlacing = game:GetService("CoreGui") end
+local coreLocked = pcall(function()
+	local a=Instance.new("Folder",game:GetService("CoreGui"))
+end)
+coreLocked=not coreLocked
+local guiPlacing
+if coreLocked then 
+	guiPlacing = game:GetService("Players").LocalPlayer.PlayerGui 
+else 
+	guiPlacing = game:GetService("CoreGui") 
+end
+
 local Colorize = {}
 local Drawing = {}
 if _G.OptimizeMenu ~= true then
@@ -2820,20 +2830,20 @@ function Setvisuals(v)
                         else
                             weapon.Visible = false
                         end
-
-                        if gui:IsChecked("Visuals", "Nametags") and not gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
+                        
+                        if gui:IsChecked("Visuals", "Nametags",2) and not gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
                             Nametag.Position = Vector2.new((vector.X-downPos/4)+(downPos/2)/2,(vector.Y+downPos/2)-16)
                             Nametag.Color = InterColor
                             Nametag.Visible = true
                             Nametag.Text = plr
-                        elseif gui:IsChecked("Visuals", "Nametags") and gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
+                        elseif gui:IsChecked("Visuals", "Nametags",2) and gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
                             Nametag.Position = Vector2.new((vector.X-downPos/4)+(downPos/2)/2,(vector.Y+downPos/2)-16)
                             Nametag.Color = InterColor
                             Nametag.Visible = true
                             local dist = 0
                             dist = math.floor((primarypart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
                             Nametag.Text = plr .. "[" .. dist .. "m]"
-                        elseif not gui:IsChecked("Visuals", "Nametags") and gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
+                        elseif not gui:IsChecked("Visuals", "Nametags",2) and gui:IsChecked("Visuals", "Distance", 2) and gui:IsChecked("Visuals", "Enabled") then
                             local dist = 0
                             dist = math.floor((primarypart.Position - game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position).Magnitude)
                             Nametag.Text = "  [" .. dist .. "m]"
